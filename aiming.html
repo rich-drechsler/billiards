@@ -1458,7 +1458,31 @@ Aim View Drag
             const activeCam = (currentView === 'top') ? cameraTop : cameraAim;
             renderer.render(scene, activeCam);
         }
-        animate();
+
+        //
+        // Quick check that tries to prevent users from running this application on
+        // a mobile device. It's just not designed for that.
+        //
+
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            document.open();
+            document.write('<!DOCTYPE html>');
+            document.write('<html>');
+            document.write('<body>');
+            document.write('<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #111; color: #fff; font-family: sans-serif; text-align: center; padding: 20px;>"');
+            document.write('<h2>🖥️ Desktop Required</h2>');
+            document.write('<p>');
+            document.write('This billiards visualizer will not run properly on a mobile device. Please open this link on a desktop or laptop browser.');
+            document.write('</p>');
+            document.write('</div>');
+            document.write('</body>');
+            document.write('</html>');
+            document.close();
+        } else {
+            animate();
+        }
     </script>
 </body>
 </html>
