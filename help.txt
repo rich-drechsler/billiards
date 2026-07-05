@@ -1,0 +1,132 @@
+[About]
+    What you get here is a boring look at a few billiard balls sitting on a flat green
+    surface (a pool table) along with some controls that let you modify what's displayed,
+    move the balls up and down the table, or shift one of the balls slightly from left to
+    right. Its only purpose is to let you visualize aspects of aiming in pool that might
+    be difficult or impossible to replicate on a real pool table with opaque balls.
+
+    This program is based on a primitive (J3D based) version that I wrote after I retired
+    from AT&T in 2012. I enjoy pool and programming, so at that time a 3D pool aiming demo
+    seemed like an interesting project. I got far enough with that clunky old program
+    to notice a few things that I believe helped me with aiming, but rather than sharing
+    my conclusions I thought a polished up browser-based implementation of that program
+    would be more valuable.
+
+    This version was a collaboration between me (Richard Drechsler) and Google Gemini 3.5
+    Flash that was built using Three.js and an HTML5 Canvas.
+
+[Balls]
+Cue Ball (CB)
+    The <span style="color: #2244ff; font-weight: bold;">blue ball</span> that moves along
+    the Center Line until it collides with the Object Ball, which happens when its center
+    reaches the center of the Ghost Ball.
+
+    It can be moved along the Center Line using the CB Position slider or by dragging the
+    ball vertically with the cursor.
+
+Object Ball (OB)
+    The <span style="color: #cc2222; font-weight: bold;">red ball</span> that is hit by
+    the Cue Ball to determine the shot direction. Selecting the "Pocket Line" checkbox
+    draws a line that shows you that direction.
+
+    It can be moved parallel to the Center Line using the OB Position slider or by dragging
+    the ball vertically. Its placement relative to the Ghost Ball can be adjusted using
+    the "Shot Angle" slider or by horizontal motion of the cursor during a drag that began
+    with the SHIFT key pressed.
+
+Ghost Ball (GB)
+    The <span style="color: #aaaaaa; font-weight: bold;">gray ball</span> that's always
+    positioned on the Center Line next to the Object Ball. It's an imaginary ball that's
+    often used to explain aiming in pool, particularly to new players.
+
+    Movement constraints prevent the Cue Ball's center from advancing past the center
+    of the Ghost Ball.
+
+Note
+    Two letter abbreviations shown in parentheses above are used to label some of the
+    GUI components and are referenced throughout this documentation.
+
+[Lines]
+Center Line
+    The <span style="color: #ffffff; font-weight: bold;">white line</span> that connects
+    the center of the Cue Ball to the center of the Ghost Ball. Movement of the Cue Ball
+    up and down the table is locked onto this line.
+
+    Selecting the "Extended" checkbox extends both ends of this line, primarily to help
+    you notice when this line intersects the Object Ball.
+
+Contact Line
+    The <span style="color: #ffaa00; font-weight: bold;">orange line</span> that connects
+    the contact point on the Object Ball to the contact point on the Cue Ball. Those two
+    points coincide when the collision happens, so when you see the orange Contact Line
+    and the white Center Line you can be sure you're looking at parallel lines.
+
+    This line splits the Cue Ball and Object Ball into matching pairs of larger and smaller
+    spherical pieces. Selecting the "Caps" checkbox paints the two smaller matching pieces
+    orange.
+
+Pocket Line
+    The <span style="color: #00ff41; font-weight: bold;">green line</span> that connects
+    the center of the Ghost Ball to the center of the Object Ball. This line represents the
+    direction the Object Ball travels after a collision with the Cue Ball. Both ends of this
+    line are extended to make sure that direction is always visible.
+
+    Selecting the "Cloned" checkbox draws a parallel copy of this line through the center
+    of the Cue Ball.
+
+[Sliders]
+Shot Angle
+    This slider adjusts the direction that the Object Ball would travel in a world with no
+    complications (like friction) after a collision with the Cue Ball. It's visible as the
+    small angle between the Pocket Line and the Extended Center Line.
+
+Position
+    A pair of sliders that you can use to move the Cue Ball and the Object Ball. Motion of
+    either one stops when the Cue Ball and Ghost Ball share the same point as their center.
+
+Camera
+    A pair of sliders that you can use to move the two cameras. In the Top View moving the
+    camera Down or Up zooms in or out, while moving it Left or Right isn't allowed. In the
+    Aim View the camera gives you the player's perspective and both sliders are enabled.
+
+Transparency
+    Sliders that let you adjust the transparency of the Cue Ball, Object Ball, and Ghost
+    Ball. Initially the Cue Ball and Object Ball are opaque and the Ghost Ball is visible
+    but mostly transparent.
+
+Note
+    Sliders respond to the mouse wheel, and the rotation direction of the wheel moves all
+    of them in the same direction.
+
+[Views]
+Top View
+    A birds-eye view from directly above the table. The mouse wheel can be used to move the
+    camera up and down (relative to the table), exactly the way it's done using the Camera
+    slider. In this view the Left/Right Camera is disabled.
+
+    The Cue Ball and the Object Ball can be dragged up and down the table. The Shot Angle
+    can be adjusted by horizontal motion of the cursor during a drag of the Object Ball
+    that began with the SHIFT key pressed.
+
+Aim View
+    A view from the player's perspective that by default looks down the line of the shot.
+    The mouse wheel can be used to move the camera up and down (relative to the table),
+    exactly the way it's done using the Camera slider. In this view the Left/Right Camera
+    slider is active and can be used to make small horizontal adjustments to the position
+    of the camera.
+
+    The Cue Ball and the Object Ball can be dragged up and down the table. The Shot Angle
+    can be adjusted by horizontal motion of the cursor during a drag of the Object Ball
+    that began with the SHIFT key pressed.
+
+View Selector
+    The active view can be changed using the dropdown menu that's positioned in the center
+    of the bottom bar. Each mouse wheel click, while the cursor hovers over the dropdown
+    menu, flips the active view.
+
+[Issues]
+Aim View Drag
+    Right now, dragging the Object Ball in the Aim View doesn't work as well as we would
+    like. It's something that eventually may be addressed, but for now we recommend using
+    the OB Position slider if you want more predictable behavior.
+
