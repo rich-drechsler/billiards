@@ -10,7 +10,7 @@
     seemed like an interesting project. I got far enough with that clunky old program
     to notice a few things that I believe helped me with aiming, but rather than sharing
     my conclusions I thought a polished up browser-based implementation of that program
-    would be more valuable.
+    would be more valuable. That way you can run the program and make up your own mind.
 
     This version was a collaboration between me (Richard Drechsler) and Google Gemini 3.5
     Flash that was built using Three.js and an HTML5 Canvas.
@@ -125,6 +125,16 @@ View Selector
     menu, flips the active view.
 
 [Issues]
+Platforms
+    This application runs in a browser, but it was written assuming a decent size screen
+    and a mouse (with a wheel) were always available. It uses your browser's User-Agent
+    string to identify platforms that might not work well, but it's a flawed test. For
+    the best results, use a desktop or laptop with a mouse that has a wheel.
+
+iPads
+    Even though there are issues, we decided not to reject iPads. You currently can't drag
+    the Cue Ball or the Object Ball, but all of the sliders in the left panel work.
+
 Aim View Drag
     Right now, dragging the Object Ball in the Aim View doesn't work as well as we would
     like. It's something that eventually may be addressed, but for now we recommend using
