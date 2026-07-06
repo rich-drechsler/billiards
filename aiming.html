@@ -1453,23 +1453,21 @@ Aim View Drag
         updateGeometryAndTransforms();
 
         function animate() {
-            const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
             //
             // The userAgent check is an attempt to prevent the application from running
-            // on devices where it's unlikey to work. For example, it's very unlikey that
-            // a phone's screen is big enough for someone to comfortably view (or use) it.
+            // on devices where it's unlikey to work. Decided not to reject iPads, even
+            // the balls can't be dragged, because the sliders seem to work.
             //
 
-            if (isMobile) {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 document.open();
                 document.write('<!DOCTYPE html>');
                 document.write('<html>');
                 document.write('<body>');
-                document.write('<div style="font-size: 48px; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #111; color: #fff; font-family: sans-serif; text-align: center; padding: 20px;>"');
+                document.write('<div style="font-size: 42px; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #111; color: #fff; font-family: sans-serif; text-align: center; padding: 20px;>"');
                 document.write('<h2>🖥️ Desktop Required</h2>');
                 document.write('<p>');
-                document.write('This billiards visualizer will not run properly on a mobile device. Please open this link on a desktop or laptop browser.');
+                document.write('This billiards visualizer probably will not run properly on this device. Please open this link using a desktop or laptop browser.');
                 document.write('</p>');
                 document.write('</div>');
                 document.write('</body>');
